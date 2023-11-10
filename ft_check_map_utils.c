@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 12:55:17 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/06 17:05:39 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:03:43 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_check	ft_creat_check(char *map[])
 		}
 		i++;
 	}
-	return (check);
+	return (check.x = 0, check.y = 0, check);
 }
 
 void	ft_free(char **tab)
