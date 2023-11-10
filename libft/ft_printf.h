@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:08:15 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/06 11:41:09 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:51:14 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		ft_printf_uns_dec(va_list to_write);
 int		ft_printf_hexa_lower(va_list to_write);
 int		ft_printf_hexa_upper(va_list to_write);
 void	ft_putnbr_fd(int n, int fd);
+char	*ft_itoa(int nbr);
 
 #endif
