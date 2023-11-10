@@ -6,13 +6,13 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:45:55 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 10:57:56 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:01:02 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_draw_into_window(mlx_t *wind, char c, mlx_image_t *img, char *map[])
+static int	ft_draw_wind(mlx_t *wind, char c, mlx_image_t *img, char *map[])
 {
 	int	i;
 	int	j;
@@ -35,7 +35,7 @@ static int	ft_draw_into_window(mlx_t *wind, char c, mlx_image_t *img, char *map[
 	return (1);
 }
 
-static int	ft_load_texture_into_window(mlx_t *wind, char c, char *png, char *map[])
+static int	ft_load_texture(mlx_t *wind, char c, char *png, char *map[])
 {
 	mlx_texture_t	*text;
 	mlx_image_t		*img;
@@ -46,7 +46,7 @@ static int	ft_load_texture_into_window(mlx_t *wind, char c, char *png, char *map
 	img = mlx_texture_to_image(wind, text);
 	if (!img)
 		return (mlx_delete_texture(text), -6);
-	if (ft_draw_into_window(wind, c, img, map) < 0)
+	if (ft_draw_wind(wind, c, img, map) < 0)
 		return (mlx_delete_texture(text), -6);
 	mlx_delete_texture(text);
 	return (1);
@@ -76,15 +76,15 @@ mlx_t	*ft_init_window(char *map[])
 
 	size = ft_size(map);
 	wind = mlx_init(size.x * 32, size.y * 32, "so_long", 1);
-	if (ft_load_texture_into_window(wind, '0', "background.png", map) < 0)
+	if (ft_load_texture(wind, '0', "background.png", map) < 0)
 		return (wind->window = NULL, wind);
-	if (ft_load_texture_into_window(wind, '1', "obstacle.png", map) < 0)
+	if (ft_load_texture(wind, '1', "obstacle.png", map) < 0)
 		return (wind->window = NULL, wind);
-	if (ft_load_texture_into_window(wind, 'C', "chests.png", map) < 0)
+	if (ft_load_texture(wind, 'C', "chests.png", map) < 0)
 		return (wind->window = NULL, wind);
-	if (ft_load_texture_into_window(wind, 'P', "charac.png", map) < 0)
+	if (ft_load_texture(wind, 'P', "charac.png", map) < 0)
 		return (wind->window = NULL, wind);
-	if (ft_load_texture_into_window(wind, 'E', "end.png", map) < 0)
+	if (ft_load_texture(wind, 'E', "end.png", map) < 0)
 		return (wind->window = NULL, wind);
 	return (wind);
 }

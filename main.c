@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:58:44 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 09:58:00 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:57:06 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ static char	**ft_check_arg(int argc, char *argv[])
 	}
 	return (map);
 }
-
-
 
 int	main(int argc, char *argv[])
 {

@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:38:37 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 11:28:05 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:57:36 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_check	ft_find_character(char *map[], char c)
 			{
 				check.x = j;
 				check.y = i;
-				return (check);		
+				return (check);
 			}
 			j++;
 		}

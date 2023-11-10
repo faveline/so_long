@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:56:05 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 11:43:30 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:56:45 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	ft_redraw_around(mlx_t *wind, char *map[], t_check pos)
 		ft_error(-6);
 		mlx_close_window(wind);
 	}
-	if (map[pos.y][pos.x + 1] == '0' && 
+	if (map[pos.y][pos.x + 1] == '0' &&
 			ft_redraw_pos(pos.x + 1, pos.y, wind, "background.png") == -1)
 	{
 		ft_error(-6);
@@ -61,7 +61,7 @@ static void	ft_redraw(char *map[], mlx_t *wind)
 	}
 }
 
-static void ft_which_key(char key, char *map[], mlx_t *wind)
+static void	ft_which_key(char key, char *map[], mlx_t *wind)
 {
 	static int	i;
 
@@ -90,7 +90,7 @@ static void ft_which_key(char key, char *map[], mlx_t *wind)
 static void	ft_key_pressed(mlx_key_data_t keydata, void *ptr)
 {
 	t_wind_map	*window;
-	
+
 	window = (t_wind_map *)ptr;
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 		ft_which_key('w', window->map_s, window->wind_s);
