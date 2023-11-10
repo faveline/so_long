@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:58:44 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/09 11:47:55 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 09:58:00 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char *argv[])
 		return (ft_delete(map), ft_error(-6), 1);
 	window.map_s = map;
 	window.wind_s = wind;
-	ft_action_on_hook(window);
+	ft_action_on_hook(&window);
 	mlx_loop(wind);
 	ft_delete(map);
 	return (0);

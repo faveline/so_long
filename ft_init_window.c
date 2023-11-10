@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:45:55 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/09 09:41:15 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:57:56 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_draw_into_window(mlx_t *wind, char c, mlx_image_t *img, char *map[
 		{
 			if (map[i][j] == c)
 			{
-				if (mlx_image_to_window(wind, img, j * 64, i * 64) < 0)
+				if (mlx_image_to_window(wind, img, j * 32, i * 32) < 0)
 					return (-6);
 			}
 			j++;
@@ -45,9 +45,9 @@ static int	ft_load_texture_into_window(mlx_t *wind, char c, char *png, char *map
 		return (-6);
 	img = mlx_texture_to_image(wind, text);
 	if (!img)
-		return (-6);
+		return (mlx_delete_texture(text), -6);
 	if (ft_draw_into_window(wind, c, img, map) < 0)
-		return (-6);
+		return (mlx_delete_texture(text), -6);
 	mlx_delete_texture(text);
 	return (1);
 }
@@ -75,16 +75,16 @@ mlx_t	*ft_init_window(char *map[])
 	t_check	size;
 
 	size = ft_size(map);
-	wind = mlx_init(size.x * 64, size.y * 64, "so_long", 1);
-	if (ft_load_texture_into_window(wind, '0', "Chick.png", map) < 0)
+	wind = mlx_init(size.x * 32, size.y * 32, "so_long", 1);
+	if (ft_load_texture_into_window(wind, '0', "background.png", map) < 0)
 		return (wind->window = NULL, wind);
-	if (ft_load_texture_into_window(wind, '1', "exemple.png", map) < 0)
+	if (ft_load_texture_into_window(wind, '1', "obstacle.png", map) < 0)
 		return (wind->window = NULL, wind);
-	if (ft_load_texture_into_window(wind, 'C', "exemple.png", map) < 0)
+	if (ft_load_texture_into_window(wind, 'C', "chests.png", map) < 0)
 		return (wind->window = NULL, wind);
-	if (ft_load_texture_into_window(wind, 'P', "Trees.png", map) < 0)
+	if (ft_load_texture_into_window(wind, 'P', "charac.png", map) < 0)
 		return (wind->window = NULL, wind);
-	if (ft_load_texture_into_window(wind, 'E', "exemple.png", map) < 0)
+	if (ft_load_texture_into_window(wind, 'E', "end.png", map) < 0)
 		return (wind->window = NULL, wind);
 	return (wind);
 }
