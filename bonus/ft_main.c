@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:58:44 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 11:57:06 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/11 17:31:45 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	**ft_check_arg(int argc, char *argv[])
 	if (error < 0)
 	{
 		ft_error(error);
-		return (NULL);
+		return (ft_delete(map), NULL);
 	}
 	return (map);
 }
@@ -67,5 +67,6 @@ int	main(int argc, char *argv[])
 	ft_action_on_hook(&window);
 	mlx_loop(wind);
 	ft_delete(map);
+	mlx_terminate(wind);
 	return (0);
 }

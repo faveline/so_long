@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 14:07:11 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/07 17:52:41 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/11 15:03:10 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ void	ft_error(int error)
 		ft_printf("ERROR\nTheir is a non valid caracter in the map.");
 	if (error == -6)
 		ft_printf("ERROR\nProblem during the drawing of the map.");
+	if (error == -7)
+		ft_printf("ERROR\nProblem during the drawing of the patrol.");
 }

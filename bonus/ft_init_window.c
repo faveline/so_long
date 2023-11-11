@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:45:55 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 12:01:02 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/11 14:24:47 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ mlx_t	*ft_init_window(char *map[])
 	if (ft_load_texture(wind, 'P', "charac.png", map) < 0)
 		return (wind->window = NULL, wind);
 	if (ft_load_texture(wind, 'E', "end.png", map) < 0)
+		return (wind->window = NULL, wind);
+	if (ft_load_texture(wind, 'L', "ROL1.png", map) < 0)
+		return (wind->window = NULL, wind);
+	if (ft_load_texture(wind, 'R', "ROR1.png", map) < 0)
 		return (wind->window = NULL, wind);
 	return (wind);
 }

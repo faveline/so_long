@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:02:02 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 18:04:52 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:11:18 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ static int	ft_check_stendc(char *map[], int start, int end, int nb_c)
 		while (map[i][++j])
 		{
 			if (map[i][j] != 'P' && map[i][j] != 'E' && map[i][j] != 'C'
-					&& map[i][j] != '0' && map[i][j] != '1'
-					&& map[i][j] != 'L' && map[i][j] != 'R')
+					&& map[i][j] != '0' && map[i][j] != '1')
 				return (-5);
 			if (map[i][j] == 'P')
 				start++;
@@ -102,13 +101,11 @@ static int	ft_check_valid(char *map[], int x, int y, int cpt)
 		map[x][y] = '2';
 		cpt++;
 	}
-	if (map[x - 1][y] != '1' && map[x - 1][y] != '2'
-			&& map[x - 1][y] != 'R' && map[x - 1][y] != 'L')
+	if (map[x - 1][y] != '1' && map[x - 1][y] != '2')
 		cpt = ft_check_valid(map, x - 1, y, cpt);
 	if (map[x][y + 1] != '1' && map[x][y + 1] != '2')
 		cpt = ft_check_valid(map, x, y + 1, cpt);
-	if (map[x + 1][y] != '1' && map[x + 1][y] != '2'
-			&& map[x + 1][y] != 'R' && map[x + 1][y] != 'L')
+	if (map[x + 1][y] != '1' && map[x + 1][y] != '2')
 		cpt = ft_check_valid(map, x + 1, y, cpt);
 	if (map[x][y - 1] != '1' && map[x][y - 1] != '2')
 		cpt = ft_check_valid(map, x, y - 1, cpt);

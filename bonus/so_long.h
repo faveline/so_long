@@ -6,21 +6,21 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:06:19 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 11:45:51 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:51:11 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <string.h>
 # include <stdlib.h>
-# include "libft/get_next_line.h"
-# include "libft/ft_printf.h"
+# include "../libft/get_next_line.h"
+# include "../libft/ft_printf.h"
 
 typedef struct s_check
 {
@@ -49,5 +49,10 @@ int		ft_d_pressed(char *map[], mlx_t *wind);
 void	ft_print_map(char *map[]);
 t_check	ft_find_character(char *map[], char c);
 int		ft_redraw_pos(int x, int y, mlx_t *wind, char *png);
+void	ft_print_screen(mlx_t *wind, int i);
+int		ft_redraw_pos_anim(int x, int y, mlx_t *wind, char *png);
+void	ft_moving_patrol(char *map[]);
+int		ft_redraw_patrol(mlx_t *wind, char *map[]);
+void	ft_loop_anim(void *ptr);
 
 #endif

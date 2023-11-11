@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 10:22:18 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 17:06:48 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:47:51 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,23 @@ int	ft_check_if_c(char *map[])
 
 int	ft_w_pressed(char *map[], mlx_t *wind)
 {
-	t_check	pos;
+	t_check	pos_p;
 
-	pos = ft_find_character(map, 'P');
-	if (pos.x == 0 && pos.y == 0)
+	pos_p = ft_find_character(map, 'P');
+	if (pos_p.x == 0 && pos_p.y == 0)
 	{
 		mlx_close_window(wind);
 		return (3);
 	}
-	if (map[pos.y - 1][pos.x] != '1' && map[pos.y - 1][pos.x] != 'E'
-			&& map[pos.y - 1][pos.x] != 'L' && map[pos.y - 1][pos.x] != 'R')
+	if (map[pos_p.y - 1][pos_p.x] != '1' && map[pos_p.y - 1][pos_p.x] != 'E')
 	{
-		map[pos.y][pos.x] = '0';
-		map[pos.y - 1][pos.x] = 'P';
-		ft_moving_patrol(map);
+		map[pos_p.y][pos_p.x] = '0';
+		map[pos_p.y - 1][pos_p.x] = 'P';
 		return (1);
 	}
-	if (map[pos.y - 1][pos.x] == 'E' && ft_check_if_c(map) == 1)
+	if (map[pos_p.y - 1][pos_p.x] == 'E' && ft_check_if_c(map) == 1)
 	{
-		map[pos.y][pos.x] = '0';
+		map[pos_p.y][pos_p.x] = '0';
 		return (1);
 	}
 	return (0);
@@ -60,25 +58,23 @@ int	ft_w_pressed(char *map[], mlx_t *wind)
 
 int	ft_d_pressed(char *map[], mlx_t *wind)
 {
-	t_check	pos;
+	t_check	pos_p;
 
-	pos = ft_find_character(map, 'P');
-	if (pos.x == 0 && pos.y == 0)
+	pos_p = ft_find_character(map, 'P');
+	if (pos_p.x == 0 && pos_p.y == 0)
 	{
 		mlx_close_window(wind);
 		return (3);
 	}
-	if (map[pos.y][pos.x + 1] != '1' && map[pos.y][pos.x + 1] != 'E'
-			&& map[pos.y][pos.x + 1] != 'L' && map[pos.y][pos.x + 1] != 'R')
+	if (map[pos_p.y][pos_p.x + 1] != '1' && map[pos_p.y][pos_p.x + 1] != 'E')
 	{
-		map[pos.y][pos.x] = '0';
-		map[pos.y][pos.x + 1] = 'P';
-		ft_moving_patrol(map);
+		map[pos_p.y][pos_p.x] = '0';
+		map[pos_p.y][pos_p.x + 1] = 'P';
 		return (1);
 	}
-	if (map[pos.y][pos.x + 1] == 'E' && ft_check_if_c(map) == 1)
+	if (map[pos_p.y][pos_p.x + 1] == 'E' && ft_check_if_c(map) == 1)
 	{
-		map[pos.y][pos.x] = '0';
+		map[pos_p.y][pos_p.x] = '0';
 		return (1);
 	}
 	return (0);
@@ -86,25 +82,23 @@ int	ft_d_pressed(char *map[], mlx_t *wind)
 
 int	ft_a_pressed(char *map[], mlx_t *wind)
 {
-	t_check	pos;
+	t_check	pos_p;
 
-	pos = ft_find_character(map, 'P');
-	if (pos.x == 0 && pos.y == 0)
+	pos_p = ft_find_character(map, 'P');
+	if (pos_p.x == 0 && pos_p.y == 0)
 	{
 		mlx_close_window(wind);
 		return (3);
 	}
-	if (map[pos.y][pos.x - 1] != '1' && map[pos.y][pos.x - 1] != 'E'
-			&& map[pos.y][pos.x - 1] != 'L' && map[pos.y][pos.x - 1] != 'R')
+	if (map[pos_p.y][pos_p.x - 1] != '1' && map[pos_p.y][pos_p.x - 1] != 'E')
 	{
-		map[pos.y][pos.x] = '0';
-		map[pos.y][pos.x - 1] = 'P';
-		ft_moving_patrol(map);
+		map[pos_p.y][pos_p.x] = '0';
+		map[pos_p.y][pos_p.x - 1] = 'P';
 		return (1);
 	}
-	if (map[pos.y][pos.x - 1] == 'E' && ft_check_if_c(map) == 1)
+	if (map[pos_p.y][pos_p.x - 1] == 'E' && ft_check_if_c(map) == 1)
 	{
-		map[pos.y][pos.x] = '0';
+		map[pos_p.y][pos_p.x] = '0';
 		return (1);
 	}
 	return (0);
@@ -112,25 +106,23 @@ int	ft_a_pressed(char *map[], mlx_t *wind)
 
 int	ft_s_pressed(char *map[], mlx_t *wind)
 {
-	t_check	pos;
+	t_check	pos_p;
 
-	pos = ft_find_character(map, 'P');
-	if (pos.x == 0 && pos.y == 0)
+	pos_p = ft_find_character(map, 'P');
+	if (pos_p.x == 0 && pos_p.y == 0)
 	{
 		mlx_close_window(wind);
 		return (3);
 	}
-	if (map[pos.y + 1][pos.x] != '1' && map[pos.y + 1][pos.x] != 'E'
-			&& map[pos.y + 1][pos.x] != 'L' && map[pos.y + 1][pos.x] != 'R')
+	if (map[pos_p.y + 1][pos_p.x] != '1' && map[pos_p.y + 1][pos_p.x] != 'E')
 	{
-		map[pos.y][pos.x] = '0';
-		map[pos.y + 1][pos.x] = 'P';
-		ft_moving_patrol(map);
+		map[pos_p.y][pos_p.x] = '0';
+		map[pos_p.y + 1][pos_p.x] = 'P';
 		return (1);
 	}
-	if (map[pos.y + 1][pos.x] == 'E' && ft_check_if_c(map) == 1)
+	if (map[pos_p.y + 1][pos_p.x] == 'E' && ft_check_if_c(map) == 1)
 	{
-		map[pos.y][pos.x] = '0';
+		map[pos_p.y][pos_p.x] = '0';
 		return (1);
 	}
 	return (0);

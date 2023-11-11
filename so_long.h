@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:06:19 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 17:44:03 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:45:51 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,5 @@ int		ft_d_pressed(char *map[], mlx_t *wind);
 void	ft_print_map(char *map[]);
 t_check	ft_find_character(char *map[], char c);
 int		ft_redraw_pos(int x, int y, mlx_t *wind, char *png);
-void	ft_print_screen(mlx_t *wind, int i);
-void	ft_moving_patrol(char *map[]);
-int		ft_redraw_patrol(mlx_t *wind, char *map[]);
 
 #endif

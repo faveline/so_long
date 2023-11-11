@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:56:05 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 17:43:52 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/10 11:56:45 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,6 @@ static void	ft_redraw(char *map[], mlx_t *wind)
 		}
 		ft_redraw_around(wind, map, pos);
 	}
-	if (ft_redraw_patrol(wind, map) == -1)
-	{
-		ft_error(-6);
-		mlx_close_window(wind);
-	}
 }
 
 static void	ft_which_key(char key, char *map[], mlx_t *wind)
@@ -72,25 +67,24 @@ static void	ft_which_key(char key, char *map[], mlx_t *wind)
 
 	if (key == 'w' && ft_w_pressed(map, wind) == 1)
 	{
-		ft_print_screen(wind, i++);
+		ft_printf("%d\n", i++);
 		ft_redraw(map, wind);
 	}
 	else if (key == 's' && ft_s_pressed(map, wind) == 1)
 	{
-		ft_print_screen(wind, i++);
+		ft_printf("%d\n", i++);
 		ft_redraw(map, wind);
 	}
 	else if (key == 'a' && ft_a_pressed(map, wind) == 1)
 	{
-		ft_print_screen(wind, i++);
+		ft_printf("%d\n", i++);
 		ft_redraw(map, wind);
 	}
 	else if (key == 'd' && ft_d_pressed(map, wind) == 1)
 	{
-		ft_print_screen(wind, i++);
+		ft_printf("%d\n", i++);
 		ft_redraw(map, wind);
 	}
-	ft_print_map(map);
 }
 
 static void	ft_key_pressed(mlx_key_data_t keydata, void *ptr)
