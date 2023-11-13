@@ -47,7 +47,7 @@ BONUS = $(addprefix bonus/, $(SOURCES_BONUS))
 MLX42 = MLX42/build/libmlx42.a
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 MLX42_FLAGS = -ldl -lglfw -pthread -lm
 RM = rm -f
 

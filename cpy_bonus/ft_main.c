@@ -6,13 +6,13 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:58:44 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/13 16:57:56 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:57:53 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_delete(void **map)
+static void	ft_delete(char *map[])
 {
 	int	i;
 
@@ -23,19 +23,6 @@ static void	ft_delete(void **map)
 		i++;
 	}
 	free(map);
-}
-
-static void	ft_delete_img(void ***img, char *map[])
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(img[i]);
-		i++;
-	}
-	free(img);
 }
 
 static char	**ft_check_arg(int argc, char *argv[])
@@ -58,7 +45,7 @@ static char	**ft_check_arg(int argc, char *argv[])
 	if (error < 0)
 	{
 		ft_error(error);
-		return (NULL);
+		return (ft_delete(map), NULL);
 	}
 	return (map);
 }
@@ -66,18 +53,20 @@ static char	**ft_check_arg(int argc, char *argv[])
 int	main(int argc, char *argv[])
 {
 	char		**map;
+	mlx_t		*wind;
 	t_wind_map	window;
-	
+
 	map = ft_check_arg(argc, argv);
 	if (map == NULL)
 		return (1);
-	window = ft_init_window(map);
-	if (!window.wind_s->window || !window.img_s)
-		return (ft_delete((void **)map), ft_error(-6), 1);
+	wind = ft_init_window(map, 0);
+	if (!wind->window)
+		return (ft_delete(map), ft_error(-6), 1);
+	window.map_s = map;
+	window.wind_s = wind;
 	ft_action_on_hook(&window);
-	mlx_loop(window.wind_s);
-	ft_delete((void **)map);
-	ft_delete_img((void ***)window.img_s, map);
-	mlx_terminate(window.wind_s);
+	mlx_loop(wind);
+	ft_delete(map);
+	mlx_terminate(wind);
 	return (0);
 }

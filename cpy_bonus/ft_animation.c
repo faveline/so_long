@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 14:48:50 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/13 16:51:42 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:58:51 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static char	*ft_i_anim(char *png)
 	return (cpy);
 }
 
-static void	ft_anim_right(t_check pos, mlx_t *wind, mlx_image_t ***img)
+static void	ft_anim_right(int j, int i, mlx_t *wind)
 {
 	char	*anim;
 
 	anim = ft_i_anim("ROR1.png");
-	if (ft_redraw_pos(pos, wind, anim, img) < 0)
+	if (ft_redraw_pos(j, i, wind, anim) < 0)
 	{
 		ft_error(-7);
 		mlx_close_window(wind);
@@ -45,12 +45,12 @@ static void	ft_anim_right(t_check pos, mlx_t *wind, mlx_image_t ***img)
 	free(anim);
 }
 
-static void	ft_anim_left(t_check pos, mlx_t *wind, mlx_image_t ***img)
+static void	ft_anim_left(int j, int i, mlx_t *wind)
 {
 	char	*anim;
 
 	anim = ft_i_anim("ROL1.png");
-	if (ft_redraw_pos(pos, wind, anim, img) < 0)
+	if (ft_redraw_pos(j, i, wind, anim) < 0)
 	{
 		ft_error(-7);
 		mlx_close_window(wind);
@@ -58,11 +58,10 @@ static void	ft_anim_left(t_check pos, mlx_t *wind, mlx_image_t ***img)
 	free(anim);
 }
 
-static void	ft_loop_anim2(char *map[], mlx_t *wind, mlx_image_t ***img)
+static void	ft_loop_anim2(char *map[], mlx_t *wind)
 {
-	int		i;
-	int		j;
-	t_check	pos;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map[i])
@@ -70,12 +69,10 @@ static void	ft_loop_anim2(char *map[], mlx_t *wind, mlx_image_t ***img)
 		j = 0;
 		while (map[i][j])
 		{
-			pos.x = j;
-			pos.y = i;
 			if (map[i][j] == 'L')
-				ft_anim_left(pos, wind, img);
+				ft_anim_left(j, i, wind);
 			if (map[i][j] == 'R')
-				ft_anim_right(pos, wind, img);
+				ft_anim_right(j, i, wind);
 			j++;
 		}
 		i++;
@@ -88,9 +85,10 @@ void	ft_loop_anim(void *ptr)
 	t_wind_map	*window;
 
 	window = (t_wind_map *)ptr;
-	if (frame++ > 5)
+	if (frame++ > 30)
 	{
-		ft_loop_anim2(window->map_s, window->wind_s, window->img_s);
+		ft_loop_anim2(window->map_s, window->wind_s);
 		frame = 0;
+		ft_redraw(window->map_s, window->wind_s, 0);
 	}
 }

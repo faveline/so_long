@@ -6,26 +6,31 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:45:55 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/13 10:57:14 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:01:03 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	ft_draw_wind(mlx_t *wind, char c, mlx_image_t *img, char *map[])
+static int	ft_draw_wind(t_wind_map *window, char c, mlx_texture_t *text)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
+	mlx_image_t	*img;
 
 	i = 0;
-	while (map[i])
+	while (window->map_s[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (window->map_s[i][j])
 		{
-			if (map[i][j] == c)
+			if (window->map_s[i][j] == c)
 			{
-				if (mlx_image_to_window(wind, img, j * 32, i * 32) < 0)
+				img = mlx_texture_to_image(window->wind_s, text);
+				if (!img)
+					return (-6);
+				window->img_s[i][j] = img;
+				if (mlx_image_to_window(window->wind_s, img, j * 32, i * 32) < 0)
 					return (-6);
 			}
 			j++;
@@ -35,7 +40,7 @@ static int	ft_draw_wind(mlx_t *wind, char c, mlx_image_t *img, char *map[])
 	return (1);
 }
 
-static int	ft_load_texture(mlx_t *wind, char c, char *png, char *map[])
+static int	ft_load_texture(t_wind_map *window, char c, char *png)
 {
 	mlx_texture_t	*text;
 	mlx_image_t		*img;
@@ -43,10 +48,10 @@ static int	ft_load_texture(mlx_t *wind, char c, char *png, char *map[])
 	text = mlx_load_png(png);
 	if (!text)
 		return (-6);
-	img = mlx_texture_to_image(wind, text);
+	img = mlx_texture_to_image(window->wind_s, text);
 	if (!img)
 		return (mlx_delete_texture(text), -6);
-	if (ft_draw_wind(wind, c, img, map) < 0)
+	if (ft_draw_wind(window, c, text) < 0)
 		return (mlx_delete_texture(text), -6);
 	mlx_delete_texture(text);
 	return (1);
@@ -69,27 +74,42 @@ static t_check	ft_size(char *map[])
 	return (size);
 }
 
-mlx_t	*ft_init_window(char *map[], int flag)
+
+t_wind_map	ft_init_window(char *map[])
 {
-	mlx_t	*wind;
-	t_check	size;
+	mlx_t		*wind;
+	t_check		size;
+	t_wind_map	window;
+	int			i;
 
 	size = ft_size(map);
-	if (flag == 0)
-		wind = mlx_init(size.x * 32, size.y * 32, "so_long", 1);
-	if (ft_load_texture(wind, '0', "background.png", map) < 0)
-		return (wind->window = NULL, wind);
-	if (ft_load_texture(wind, '1', "obstacle.png", map) < 0)
-		return (wind->window = NULL, wind);
-	if (ft_load_texture(wind, 'C', "chests.png", map) < 0)
-		return (wind->window = NULL, wind);
-	if (ft_load_texture(wind, 'P', "charac.png", map) < 0)
-		return (wind->window = NULL, wind);
-	if (ft_load_texture(wind, 'E', "end.png", map) < 0)
-		return (wind->window = NULL, wind);
-	if (ft_load_texture(wind, 'L', "ROL1.png", map) < 0)
-		return (wind->window = NULL, wind);
-	if (ft_load_texture(wind, 'R', "ROR1.png", map) < 0)
-		return (wind->window = NULL, wind);
-	return (wind);
+	wind = mlx_init(size.x * 32, size.y * 32, "so_long", 1);
+	window.wind_s = wind;
+	window.map_s = map;
+	window.img_s = (mlx_image_t ***)malloc((size.y) * sizeof(mlx_image_t **));
+	if (window.img_s == NULL)
+		return (window);
+	i = 0;
+	while (i < size.y)
+	{
+		window.img_s[i] = (mlx_image_t **)malloc((size.x) * sizeof(mlx_image_t *));
+		if (window.img_s == NULL)
+			return (window);
+		i++;
+	}
+	if (ft_load_texture(&window, '0', "background.png") < 0)
+		return (wind->window = NULL, window);
+	if (ft_load_texture(&window, '1', "obstacle.png") < 0)
+		return (wind->window = NULL, window);
+	if (ft_load_texture(&window, 'C', "chests.png") < 0)
+		return (wind->window = NULL, window);
+	if (ft_load_texture(&window, 'P', "charac.png") < 0)
+		return (wind->window = NULL, window);
+	if (ft_load_texture(&window, 'E', "end.png") < 0)
+		return (wind->window = NULL, window);
+	if (ft_load_texture(&window, 'L', "ROL1.png") < 0)
+		return (wind->window = NULL, window);
+	if (ft_load_texture(&window, 'R', "ROR1.png") < 0)
+		return (wind->window = NULL, window);
+	return (window);
 }
