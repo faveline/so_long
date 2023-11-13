@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:06:19 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/13 10:58:04 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:12:52 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ typedef struct s_check
 
 typedef struct s_wind_map
 {
-	char	**map_s;
-	mlx_t	*wind_s;
+	char		**map_s;
+	mlx_t		*wind_s;
 }			t_wind_map;
+
 
 char	**ft_creat_map(char *file);
 int		ft_check_map(char *map[]);

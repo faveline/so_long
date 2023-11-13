@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:45:55 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/10 12:01:02 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/13 13:12:46 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ static t_check	ft_size(char *map[])
 
 mlx_t	*ft_init_window(char *map[])
 {
-	mlx_t	*wind;
-	t_check	size;
+	mlx_t		*wind;
+	t_check		size;
 
 	size = ft_size(map);
 	wind = mlx_init(size.x * 32, size.y * 32, "so_long", 1);
