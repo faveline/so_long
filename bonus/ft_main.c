@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:58:44 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/11 17:31:45 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:57:53 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int argc, char *argv[])
 	map = ft_check_arg(argc, argv);
 	if (map == NULL)
 		return (1);
-	wind = ft_init_window(map);
+	wind = ft_init_window(map, 0);
 	if (!wind->window)
 		return (ft_delete(map), ft_error(-6), 1);
 	window.map_s = map;

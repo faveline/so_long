@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:45:55 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/11 14:24:47 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:57:14 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,14 @@ static t_check	ft_size(char *map[])
 	return (size);
 }
 
-mlx_t	*ft_init_window(char *map[])
+mlx_t	*ft_init_window(char *map[], int flag)
 {
 	mlx_t	*wind;
 	t_check	size;
 
 	size = ft_size(map);
-	wind = mlx_init(size.x * 32, size.y * 32, "so_long", 1);
+	if (flag == 0)
+		wind = mlx_init(size.x * 32, size.y * 32, "so_long", 1);
 	if (ft_load_texture(wind, '0', "background.png", map) < 0)
 		return (wind->window = NULL, wind);
 	if (ft_load_texture(wind, '1', "obstacle.png", map) < 0)

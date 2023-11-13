@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:38:37 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/11 15:52:27 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:54:21 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,6 @@ int	ft_redraw_pos(int x, int y, mlx_t *wind, char *png)
 {
 	mlx_texture_t	*text;
 	mlx_image_t		*img;
-
-	text = mlx_load_png(png);
-	if (!text)
-		return (-1);
-	img = mlx_texture_to_image(wind, text);
-	if (!img)
-		return (mlx_delete_texture(text), -1);
-	if (mlx_image_to_window(wind, img, x * 32, y * 32) < 0)
-		return (mlx_delete_texture(text), -1);
-	mlx_delete_texture(text);
-	return (1);
-}
-
-int	ft_redraw_pos_anim(int x, int y, mlx_t *wind, char *png)
-{
-	mlx_texture_t		*text;
-	mlx_image_t			*img;
 
 	text = mlx_load_png(png);
 	if (!text)

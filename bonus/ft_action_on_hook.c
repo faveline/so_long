@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:56:05 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/11 16:29:17 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:56:40 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	ft_redraw_around(mlx_t *wind, char *map[], t_check pos)
 	}
 }
 
-static void	ft_redraw(char *map[], mlx_t *wind)
+void	ft_redraw(char *map[], mlx_t *wind, int flag)
 {
 	t_check	pos;
 
@@ -52,17 +52,12 @@ static void	ft_redraw(char *map[], mlx_t *wind)
 	}
 	else
 	{
-		if (ft_redraw_pos(pos.x, pos.y, wind, "charac.png") == -1)
+		if (flag == 0 && ft_redraw_pos(pos.x, pos.y, wind, "charac.png") == -1)
 		{
 			ft_error(-6);
 			mlx_close_window(wind);
 		}
 		ft_redraw_around(wind, map, pos);
-	}
-	if (ft_redraw_patrol(wind, map) == -1)
-	{
-		ft_error(-6);
-		mlx_close_window(wind);
 	}
 }
 
@@ -71,25 +66,19 @@ static void	ft_which_key(char key, char *map[], mlx_t *wind)
 	static int	i;
 
 	if (key == 'w' && ft_w_pressed(map, wind) == 1)
-	{
 		ft_print_screen(wind, i++);
-		ft_redraw(map, wind);
-	}
 	else if (key == 's' && ft_s_pressed(map, wind) == 1)
-	{
 		ft_print_screen(wind, i++);
-		ft_redraw(map, wind);
-	}
 	else if (key == 'a' && ft_a_pressed(map, wind) == 1)
-	{
 		ft_print_screen(wind, i++);
-		ft_redraw(map, wind);
-	}
 	else if (key == 'd' && ft_d_pressed(map, wind) == 1)
-	{
 		ft_print_screen(wind, i++);
-		ft_redraw(map, wind);
+	if (ft_redraw_patrol(wind, map) < 0)
+	{
+		ft_error(-6);
+		mlx_close_window(wind);
 	}
+	ft_redraw(map, wind, 1);
 }
 
 static void	ft_key_pressed(mlx_key_data_t keydata, void *ptr)
