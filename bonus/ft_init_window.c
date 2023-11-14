@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 13:45:55 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/13 16:01:03 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/14 13:33:53 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,48 @@ static int	ft_draw_wind(t_wind_map *window, char c, mlx_texture_t *text)
 	return (1);
 }
 
+static int	ft_draw_wind_first(t_wind_map *window, char c, mlx_image_t *img)
+{
+	int			i;
+	int			j;
+
+	i = 0;
+	while (window->map_s[i])
+	{
+		j = 0;
+		while (window->map_s[i][j])
+		{
+			if (window->map_s[i][j] == c)
+			{
+				if (mlx_image_to_window(window->wind_s, img, j * 32, i * 32) < 0)
+					return (-6);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 static int	ft_load_texture(t_wind_map *window, char c, char *png)
 {
 	mlx_texture_t	*text;
 	mlx_image_t		*img;
-
+	mlx_texture_t	*text2;
+	
 	text = mlx_load_png(png);
-	if (!text)
+	text2 = mlx_load_png("background.png");
+	if (!text || !text2)
 		return (-6);
-	img = mlx_texture_to_image(window->wind_s, text);
+	img = mlx_texture_to_image(window->wind_s, text2);
 	if (!img)
-		return (mlx_delete_texture(text), -6);
+		return (mlx_delete_texture(text), mlx_delete_texture(text2), -6);
+	if (ft_draw_wind_first(window, c, img) < 0)
+		return (mlx_delete_texture(text), mlx_delete_texture(text2), -6);
 	if (ft_draw_wind(window, c, text) < 0)
-		return (mlx_delete_texture(text), -6);
+		return (mlx_delete_texture(text), mlx_delete_texture(text2), -6);
 	mlx_delete_texture(text);
+	mlx_delete_texture(text2);
 	return (1);
 }
 
